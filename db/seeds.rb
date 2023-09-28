@@ -6,11 +6,16 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Cleaning database..."
+Event.destroy_all
 User.destroy_all
 
 puts "Seeding users..."
-User.create([
-              {firstname: "Yanis", lastname: "Dahmane", email: "yanis@test.fr", password: "password"},
-              {firstname: "Remi", lastname: "De Almeida", email: "remi@test.fr", password: "password"},
-              {firstname: "dhayananth", lastname: "dhanasekaran", email: "dhayananth@test.fr", password: "password"}
-            ])
+yanis = User.create({firstname: "Yanis", lastname: "Dahmane", email: "yanis@test.fr", password: "password"})
+remi = User.create({firstname: "Remi", lastname: "De Almeida", email: "remi@test.fr", password: "password"})
+dhayananth = User.create({firstname: "dhayananth", lastname: "dhanasekaran", email: "dhayananth@test.fr", password: "password"})
+
+puts "Seeding events..."
+
+event = Event.create({owner: yanis, title: "Event 1", description: "Description 1", start_at: DateTime.now, end_at: DateTime.now + 1.hour})
+event.members << remi
+event.members << dhayananth

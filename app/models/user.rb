@@ -5,6 +5,17 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  # Get owned events
+  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
+
+  # Get events where user is a member
+  has_many :event_memberships
+  has_many :member_events, through: :event_memberships, source: :event
+
+  def all_events
+    created_events + member_events
+  end
+
   validates :firstname, presence: true, on: :create
   validates :lastname, presence: true, on: :create
   validates :email, presence: true, uniqueness: true, on: :create

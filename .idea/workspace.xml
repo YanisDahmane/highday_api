@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="558bfe02-4143-4127-800d-d75f63048390" name="Changes" comment="Create rails project">
-      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/json_web_token.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/serializers/user_serializer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/highday_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/highday_api.iml" afterDir="false" />
+    <list default="true" id="558bfe02-4143-4127-800d-d75f63048390" name="Changes" comment="Create user model, authentication controller and route">
+      <change afterPath="$PROJECT_DIR$/app/models/event_membership.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/serializers/event_serializer.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +29,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/yanisdahmane-bounoua/code/highday_api",
+    "nodejs_package_manager_path": "npm",
     "ruby.rails.projectView.checked": "true",
     "ruby.structure.view.model.defaults.configured": "true",
     "vue.rearranger.settings.migration": "true"
@@ -120,7 +119,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695890922011</updated>
-      <workItem from="1695890923053" duration="3009000" />
+      <workItem from="1695890923053" duration="8770000" />
     </task>
     <task id="LOCAL-00001" summary="Create rails project">
       <created>1695890947888</created>
@@ -129,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695890947888</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create user model, authentication controller and route">
+      <created>1695894169551</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695894169551</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +143,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create rails project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create rails project" />
+    <MESSAGE value="Create user model, authentication controller and route" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create user model, authentication controller and route" />
   </component>
 </project>
