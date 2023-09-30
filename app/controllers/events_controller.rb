@@ -64,8 +64,6 @@ class EventsController < ApplicationController
       render json: { message: "Event not found" }, status: :not_found
     end
     @event = Event.find(params[:id])
-    p "event found"
-    p @event
   end
 
   def is_owner_of_event?
