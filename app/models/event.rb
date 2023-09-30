@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   # Get members of event
   has_many :event_memberships
-  has_many :members, through: :event_memberships, source: :user
+  has_many :members, through: :event_memberships, source: :user, dependent: :destroy
 
   validates :title, presence: true, on: :create
   validates :description, presence: true, on: :create

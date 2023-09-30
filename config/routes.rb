@@ -11,6 +11,6 @@ Rails.application.routes.draw do
       get "/whoami", to: "authentication#whoami"
     end
 
-    resources :events, only: [:index, :show, :create, :destroy]
+    resources :events, only: [:index, :show, :create, :destroy, :update]
   end
 end

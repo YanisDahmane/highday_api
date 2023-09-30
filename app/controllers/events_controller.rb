@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_request
-  before_action :event_exits?, only: [:show, :destroy]
+  before_action :event_exits?, only: [:show, :destroy, :update]
   before_action :is_owner_of_event?, only: [:destroy]
 
   def index
@@ -9,7 +9,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     render json: EventSerializer.new(@event).to_json, status: :ok
   end
 
@@ -25,9 +24,27 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-    @event = Event.find(params[:id])
+  def update
+    if @event.update(event_params)
+      if params[:members_ids].present?
+        member_ids = params[:members_ids]
+        existing_member_ids = @event.members.pluck(:id)
+        new_member_ids = member_ids - existing_member_ids
+        removed_member_ids = existing_member_ids - member_ids
 
+        @event.members << User.where(id: new_member_ids)
+
+        @event.members.delete(User.where(id: removed_member_ids))
+      end
+
+      render json: EventSerializer.new(@event).to_json, status: :ok
+    else
+      render json: { errors: @event.errors.full_messages },
+             status: :unprocessable_entity
+    end
+  end
+
+  def destroy
     if @event.destroy
       render json: { message: "Event deleted" }, status: :ok
     else
@@ -46,6 +63,9 @@ class EventsController < ApplicationController
     unless Event.exists?(params[:id])
       render json: { message: "Event not found" }, status: :not_found
     end
+    @event = Event.find(params[:id])
+    p "event found"
+    p @event
   end
 
   def is_owner_of_event?
