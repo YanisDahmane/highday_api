@@ -14,8 +14,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create!(event_params)
+    @event = Event.new(event_params)
+    @event.owner = @current_user
     if @event.save
+      @event.members << User.where(id: params[:members_ids])
       render json: EventSerializer.new(@event).to_json, status: :created
     else
       render json: { errors: @event.errors.full_messages },
@@ -37,7 +39,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.permit(:title, :description, :start_at, :end_at, :owner_id)
+    params.require(:event).permit(:title, :description, :start_at, :end_at)
   end
 
   def event_exits?

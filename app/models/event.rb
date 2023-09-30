@@ -5,4 +5,10 @@ class Event < ApplicationRecord
   # Get members of event
   has_many :event_memberships
   has_many :members, through: :event_memberships, source: :user
+
+  validates :title, presence: true, on: :create
+  validates :description, presence: true, on: :create
+  validates :start_at, presence: true, on: :create
+  validates :end_at, presence: true, on: :create
+
 end
