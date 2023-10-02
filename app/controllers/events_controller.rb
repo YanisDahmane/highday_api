@@ -4,7 +4,13 @@ class EventsController < ApplicationController
   before_action :is_owner_of_event?, only: [:destroy]
 
   def index
-    @events = @current_user.all_events
+
+
+    if params[:date].present?
+      @events = @current_user.all_events(params[:date])
+    else
+      @events = @current_user.all_events
+    end
     render json: ActiveModel::Serializer::CollectionSerializer.new(@events, each_serializer: EventSerializer).to_json, status: :ok
   end
 

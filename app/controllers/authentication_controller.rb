@@ -4,7 +4,8 @@ class AuthenticationController < ApplicationController
   def register
     @user = User.create!(register_params)
     if @user.save
-      render json: UserSerializer.new(@user).to_json, status: :created
+      token = jwt_encode(user_id: @user.id)
+      render json: { token: token }, status: :ok
     else
       render json: { errors: @user.errors.full_messages },
              status: :unprocessable_entity

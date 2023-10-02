@@ -12,8 +12,13 @@ class User < ApplicationRecord
   has_many :event_memberships
   has_many :member_events, through: :event_memberships, source: :event
 
-  def all_events
-    created_events + member_events
+  def all_events(date = nil)
+    all_events = created_events + member_events
+    if date.present?
+      all_events.select { |event| event.start_at.to_date <= date.to_date && event.end_at.to_date >= date.to_date }
+    else
+      all_events
+    end
   end
 
   validates :firstname, presence: true, on: :create
